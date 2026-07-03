@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "postgres-creddb2": {
+      "command": "npx",
+      "args": ["-y", "@henkey/postgres-mcp-server"],
+      "env": {
+        "POSTGRES_CONNECTION_STRING": "${env:POSTGRES_CONNECTION_STRING}"
+      }
+    }
+  }
+}
