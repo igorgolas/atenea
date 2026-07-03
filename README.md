@@ -9,21 +9,16 @@ ssh -i ~/.ssh/ssh-key-Pe9.key -L 5432:localhost:5432 -l opc 138.2.131.4
 
 Deja esa terminal abierta mientras uses la base de datos.
 
-## MCP PostgreSQL (Cursor)
+## MCP **mcp atenea** (Cursor)
 
-1. Copia las variables de entorno:
+1. Abre esta carpeta como proyecto en Cursor (debe existir `.cursor/mcp.json` en la raíz).
+2. Arranca el túnel SSH **antes** de usar el MCP.
+3. Ve a **Cursor → Settings → MCP** y activa **mcp atenea**.
+4. Si no aparece, pulsa **Refresh** en MCP o reinicia Cursor.
+5. El servidor debe quedar en verde. Si está en rojo, el túnel no está activo o el puerto 5432 no responde.
 
-```bash
-cp .env.example .env
-# Edita .env con la connection string real
+La connection string va directamente en `.cursor/mcp.json`:
+
 ```
-
-2. Exporta la variable antes de abrir Cursor (o añádela a tu shell profile):
-
-```bash
-export POSTGRES_CONNECTION_STRING="postgres://creditor2_lector:PASSWORD@localhost:5432/creddb2"
+postgres://creditor2_lector:***@localhost:5432/creddb2
 ```
-
-3. Activa el servidor **mcp atenea** en Cursor → Settings → MCP.
-
-4. Con el túnel SSH activo, el agente podrá consultar `creddb2` en `localhost:5432`.
