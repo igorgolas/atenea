@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "postgres-creddb2": {
+    "mcp atenea": {
       "command": "npx",
       "args": ["-y", "@henkey/postgres-mcp-server"],
       "env": {

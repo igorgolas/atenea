@@ -24,6 +24,6 @@ cp .env.example .env
 export POSTGRES_CONNECTION_STRING="postgres://creditor2_lector:PASSWORD@localhost:5432/creddb2"
 ```
 
-3. Activa el servidor **postgres-creddb2** en Cursor → Settings → MCP.
+3. Activa el servidor **mcp atenea** en Cursor → Settings → MCP.
 
 4. Con el túnel SSH activo, el agente podrá consultar `creddb2` en `localhost:5432`.
