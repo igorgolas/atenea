@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp atenea": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@henkey/postgres-mcp-server",
+        "--connection-string",
+        "postgres://creditor2_lector:uydsh-_56disysho@localhost:5432/creddb2"
+      ]
+    }
+  }
+}
