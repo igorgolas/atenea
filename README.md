@@ -1,6 +1,23 @@
 # atenea
 
-Conexion a PostgreSQL (`creddb2`) via tunel SSH + MCP global en Cursor Desktop.
+Conexion **100% local** desde cada ordenador a PostgreSQL remoto (`creddb2`).
+
+No usa Cloud Agents ni conexion desde la nube. Cada PC trabaja en local: Cursor Desktop + tunel SSH + MCP.
+
+## Como funciona (cada ordenador por separado)
+
+```
+[Tu PC local]                         [Servidor Oracle 138.2.131.4]
+  Cursor Desktop
+    -> MCP "mcp atenea" (npx local)
+         -> localhost:5432
+              -> tunel SSH (-L 5432:localhost:5432)
+                   -> PostgreSQL creddb2
+```
+
+- **Ordenador A** y **Ordenador B** se configuran igual, pero cada uno abre **su propio tunel SSH**.
+- El MCP corre en **tu maquina**, no en Cursor Cloud.
+- La connection string apunta a `localhost:5432` porque el tunel reenvia ese puerto al servidor remoto.
 
 ## Requisitos (en cada ordenador)
 
@@ -73,12 +90,14 @@ Ejemplo final:
 }
 ```
 
-## 3. Activar en Cursor
+## 3. Activar en Cursor (local)
 
 1. Reinicia Cursor (`Cmd/Ctrl+Shift+P` -> **Reload Window**)
 2. Ve a **Settings -> MCP** (o **Tools & MCP**)
 3. Debe aparecer **mcp atenea** en verde
-4. Funciona en **cualquier proyecto**, no hace falta abrir esta carpeta
+4. Trabaja en **cualquier proyecto local**; el agente consultara PostgreSQL a traves del tunel de ese PC
+
+> **Importante:** No uses Cloud Agent para consultar la base de datos. Cloud Agent no tiene acceso a tu tunel SSH local. Usa Cursor Desktop en tu ordenador con el tunel activo.
 
 ## Si no lo ves
 
